@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="index">
+    
+<head>
+<meta charset="UTF-8"/>
+<title>view user</title>
+</head>
+
+<div layout:fragment="content">
+	<h2 th:text="#{page.user.view}"></h2><br/>
+	<p><span th:text="#{label.user.id}"></span> : <span th:text="${user.id}"></span></p>
+	<img alt="${user.avatar}" th:src="@{download-file?image=__${user.avatar}__}" width="100" height="100">
+	<p><span th:text="#{label.user.name}"></span> : <span th:text="${user.name}"></span></p>
+	<p><span th:text="#{label.user.username}"></span> : <span th:text="${user.username}"></span></p>
+	<p><span th:text="#{label.user.password}"></span> : <span th:text="${user.password}"></span></p>
+	<p>
+		<span th:text="#{label.user.gender}"></span> : 
+		<span th:if="${user.gender == 'male'}" th:text="#{label.user.gender.male}"></span>
+		<span th:if="${user.gender == 'female'}" th:text="#{label.user.gender.female}"></span>
+	</p>
+	<p th:switch="${user.role}">
+		<span th:text="#{label.user.role}"></span> : 
+		<span th:case="ROLE_ADMIN" th:text="#{label.user.role.admin}"></span>
+		<span th:case="ROLE_MEMBER" th:text="#{label.user.role.member}"></span>
+		<span th:case="UNKOWN" th:text="#{label.user.role.unknown}"></span>
+	</p>
+	<p>
+		<span th:text="#{label.user.access}"></span> : 
+		<span th:if="${user.access == 1}" th:text="#{label.user.access.enable}"></span>
+		<span th:unless="${user.access == 1}" th:text="#{label.user.access.disable}"></span>
+	</p>
+	<p>
+		<span th:text="#{label.user.favourites}"></span> : <br>
+		<span th:if="${user.favourite.contains('music')}">- [[#{label.user.favourites.music}]]</span><br>
+		<span th:if="${user.favourite.contains('game')}">- [[#{label.user.favourites.game}]]</span>
+	</p>
+	<p><span th:text="#{label.user.about}"></span> : <span th:text="${user.about}"></span></p>
+</div>
+  
+</html>

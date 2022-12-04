@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8"/>
+<title layout:title-parttern="$LAYOUT_TITLE - $CONTENT_TITLE">login</title>
+<link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+
+<div th:replace="header :: header"></div>
+
+<div>
+	<h2 th:text="#{page.login}"></h2>
+	<form th:action="@{/login}" method="post">
+		<span class="error" th:if="${error == 'error'}">Tài khoản hoặc mật khẩu không đúng</span>
+		<span class="error" th:if="${error == 'deny'}">Bạn không có quyền truy cập</span>
+		<p>
+			<label for="username" th:text="#{label.user.username}"></label><br>
+			<input type="text" name="username" placeholder="username...">
+		</p>
+		<p>
+			<label for="password" th:text="#{label.user.password}"></label><br>
+			<input type="password" name="password" placeholder="password...">
+		</p>
+		<sec:csrfInput/>
+		<p>
+			<input type="submit" th:value="#{label.action.login}">
+		</p>
+	</form>
+</div>
+
+<div th:replace="footer :: footer"></div>
+</body>
+</html>

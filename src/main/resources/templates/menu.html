@@ -1,0 +1,8 @@
+<div th:fragment="menu">
+	<a th:href="@{/admin/user/list}" th:text="#{page.user.list}"></a>
+	&nbsp;|&nbsp;
+	<a th:href="@{/admin/user/add}" th:text="#{page.user.add}"></a>
+	
+	<a th:href="@{/logout}" style="display: inline-block; float:right;" th:text="#{label.action.logout}"></a>
+	<hr/>
+</div>

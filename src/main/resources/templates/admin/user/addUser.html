@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="index">
+    
+<head>
+<meta charset="UTF-8"/>
+<title>add user</title>
+</head>
+
+<div layout:fragment="content">
+	<h2 th:text="#{page.user.add}"></h2>
+	<form th:object="${user}" method="post" th:action="@{/admin/user/add}" enctype="multipart/form-data">
+		<p>
+		<label for="fileAvatar" th:text="#{label.user.avatar}"></label><br/>
+		<input name="fileAvatar" type="file" accept="image/*"/><br/>
+		</p>
+	  	<p>
+		<label for="name" th:text="#{label.user.name}"></label><br/>
+		<input th:field="*{name}" name="name" type="text" placeholder="enter name..."/><br/>
+	  	<span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+	  	</p>
+	  	<p>
+	  	<label for="username" th:text="#{label.user.username}"></label><br/>
+	  	<input th:field="*{username}" type="text" placeholder="please enter username..."/><br/>
+	  	<span class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+	  	</p>
+	  	<p>
+	  	<label for="password" th:text="#{label.user.password}"></label><br/>
+	  	<input th:field="*{password}" type="password" placeholder="enter password..."/><br/>
+	  	<span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+	  	</p>
+	  	<p>
+	  	<label for="gender" th:text="#{label.user.gender}"></label><br/>
+	  	<input name="gender" type="radio" value="male" checked th:text="#{label.user.gender.male}"/>
+	    <input name="gender" type="radio" value="female" th:text="#{label.user.gender.female}"/>
+	  	</p>
+	  	<p>
+	  	<label for="role" th:text="#{label.user.role}"></label><br/>
+	    <input name="role" type="radio" value="ROLE_ADMIN" checked th:text="#{label.user.role.admin}" />
+	    <input name="role" type="radio" value="ROLE_MEMBER" th:text="#{label.user.role.member}" />
+	    <input name="role" type="radio" value="UNKNOWN" th:text="#{label.user.role.unknown}" />
+	  	</p>
+	  	<p>
+	 	<input name="access" type="checkbox" value="1" th:text="#{label.user.access}" checked /> <br/>
+	  	</p>
+	  	<p>
+	  	<label for="favourite" th:text="#{label.user.favourites}"></label><br/>
+	 	<input name="favourite" type="checkbox" value="music" th:text="#{label.user.favourites.music}" /> <br/>
+	    <input name="favourite" type="checkbox" value="game" th:text="#{label.user.favourites.game}" /> <br/>
+	  	</p>
+	  	<p>
+	  	<label for="about" th:text="#{label.user.about}"></label><br/>
+	  	<textarea th:field="*{about}"/></textarea><br/>
+	  	</p>
+	  	<button type="submit" th:text="#{label.action.add}"></button>  	
+	</form>
+</div>
+  
+</html>

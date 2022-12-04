@@ -1,0 +1,10 @@
+<div th:fragment="header">
+	<h1 style="display: inline-block">Header</h1>
+	<div style="display: inline-block; float:right; font-size:20px">
+		<span th:text="#{label.lang}"></span>:
+		<a th:href="@{?lang=vi}">vi</a>
+		&nbsp;|&nbsp;
+		<a th:href="@{?lang=en}">en</a>
+	</div>
+	<hr/>
+</div>
